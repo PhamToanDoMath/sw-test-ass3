@@ -82,6 +82,7 @@ class UploadFileTestCase(unittest.TestCase):
                 self.assertRegex(status, "Submitted.*")
         self.assertTrue(foundResult, "The submitted file not found in result table")
         
+        
     def test_3(self):
         """Normal assignment submission"""
         file_name = 'normal_file.txt'

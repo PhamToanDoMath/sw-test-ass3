@@ -5,9 +5,8 @@ Already installed Docker + Docker Engine
 ## 📦 Installation
 
 ```
-pip3 install selenium
-pip3 install webdriver-manager
-docker-compose -f docker-compose.yaml up -d
+chmod +x setup.sh
+./setup.sh
 ```
 
 ## 🚀 Usage

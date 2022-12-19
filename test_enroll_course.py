@@ -11,9 +11,6 @@ username = "user"
 password = "bitnami"
 
 class CreateUserTest(unittest.TestCase):
-    courseId = 1
-    sessionId = 1
-    
     def setUp(self) -> None:
         self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
         Utils.setConfig(self.driver, url)
@@ -25,19 +22,19 @@ class CreateUserTest(unittest.TestCase):
         
     def test_1(self) -> None:
         res = EnrollCourseUtils.enrollCourse(["user1@gmail.com"], '2')
-        self.assertEqual(res, True)
+        self.assertTrue(res)
         
     def test_2(self):
         res = EnrollCourseUtils.enrollCourse(["user2@gmail.com"], '2')
-        self.assertEqual(res, True)
+        self.assertTrue(res)
 
     def test_3(self):
         res = EnrollCourseUtils.enrollCourse(["user3@gmail.com", "user4@gmail.com"], '2')
-        self.assertEqual(res, True)
+        self.assertTrue(res)
 
     def test_4(self):
         res = EnrollCourseUtils.enrollCourse([], '2')
-        self.assertEqual(res, True)
+        self.assertTrue(res)
 
 if __name__=="__main__":
     options = webdriver.ChromeOptions()

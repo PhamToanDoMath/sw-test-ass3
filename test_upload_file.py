@@ -15,11 +15,7 @@ url = "http://localhost"
 username = "user"
 password = "bitnami"
 
-class UploadFileTestCase(unittest.TestCase):
-    courseId = 1
-    sessionId = 1
-    
-    
+class UploadFileTestCase(unittest.TestCase):  
     def setUp(self) -> None:
         self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
         Utils.setConfig(self.driver, url)
@@ -34,9 +30,10 @@ class UploadFileTestCase(unittest.TestCase):
         inputFilePath = os.path.join(os.getcwd(), 'testdata/datagrip.tar.gz')
         assignmentName = "Test 1 Assignment"
         courseId = 1
+        sessionId = 1
         allowDate = Date("17", "December", "2022", "8", "30")
-        dueDate = Date("25", "December", "2022", "8", "30")
-        remindDate = Date("26", "December", "2022", "8", "30")
+        dueDate = Date("25", "December", "2023", "8", "30")
+        remindDate = Date("26", "December", "2023", "8", "30")
         CourseUtils.createCourse(
             "Course 1",
             "C1",
@@ -45,7 +42,7 @@ class UploadFileTestCase(unittest.TestCase):
             courseId,
         )
         AssignmentUtils.chooseCourse(courseId)
-        AssignmentUtils.chooseSessionInCourse(self.sessionId)
+        AssignmentUtils.chooseSessionInCourse(sessionId)
         AssignmentUtils.addAssignment(
             assignmentName, allowDate, dueDate, remindDate
         )
@@ -54,7 +51,7 @@ class UploadFileTestCase(unittest.TestCase):
         AssignmentUtils.submitAssignmentFile(assignmentName, inputFilePath)
         text = self.driver.find_element(By.CLASS_NAME, 'moodle-exception-message').text
         self.assertRegex(text, ".*too large.*")
-        AssignmentUtils.deleteSessionInCourse(self.sessionId)
+        AssignmentUtils.deleteSessionInCourse(sessionId)
         
     def test_2(self):
         """Drag and drop file to submission"""
@@ -62,11 +59,12 @@ class UploadFileTestCase(unittest.TestCase):
         inputFilePath = os.path.join(os.getcwd(), f'testdata/{file_name}')
         assignmentName = "Test 2 Assignment"
         courseId = 1
+        sessionId = 1
         allowDate = Date("17", "December", "2022", "8", "30")
         dueDate = Date("25", "December", "2023", "8", "30")
         remindDate = Date("26", "December", "2023", "8", "30")
         AssignmentUtils.chooseCourse(courseId)
-        AssignmentUtils.chooseSessionInCourse(self.sessionId)
+        AssignmentUtils.chooseSessionInCourse(sessionId)
         AssignmentUtils.addAssignment(
             assignmentName, allowDate, dueDate, remindDate
         )
@@ -90,11 +88,12 @@ class UploadFileTestCase(unittest.TestCase):
         inputFilePath = os.path.join(os.getcwd(), f'testdata/{file_name}')
         assignmentName = "Test 3 Assignment"
         courseId = 1
+        sessionId = 1
         allowDate = Date("17", "December", "2022", "8", "30")
         dueDate = Date("25", "December", "2023", "8", "30")
         remindDate = Date("26", "December", "2023", "8", "30")
         AssignmentUtils.chooseCourse(courseId)
-        AssignmentUtils.chooseSessionInCourse(self.sessionId)
+        AssignmentUtils.chooseSessionInCourse(sessionId)
         AssignmentUtils.addAssignment(
             assignmentName, allowDate, dueDate, remindDate
         )
@@ -116,11 +115,12 @@ class UploadFileTestCase(unittest.TestCase):
         """No file in submission form"""
         assignmentName = "Test 4 Assignment"
         courseId = 1
+        sessionId = 1
         allowDate = Date("17", "December", "2022", "8", "30")
         dueDate = Date("25", "December", "2023", "8", "30")
         remindDate = Date("26", "December", "2023", "8", "30")
         AssignmentUtils.chooseCourse(courseId)
-        AssignmentUtils.chooseSessionInCourse(self.sessionId)
+        AssignmentUtils.chooseSessionInCourse(sessionId)
         AssignmentUtils.addAssignment(
             assignmentName, allowDate, dueDate, remindDate
         )

@@ -66,12 +66,6 @@ class AssignmentUtils(Utils):
         if collapssesection.get_attribute("aria-expanded") == False:
             collapssesection.click()
         time.sleep(2)
-
-        # activity_btn = cls.driver.find_element(
-        #     By.CSS_SELECTOR,
-        #     "div#coursecontentcollapse" + str(sessionId) + " button",
-        # )
-        # activity_btn.click()
         cls.driver.find_element(By.XPATH, f"//*[@data-action='open-chooser' and @data-sectionid={str(sessionId)}]").click()        
         time.sleep(2)
         cls.driver.find_element(By.XPATH, "//a[@title='Add a new Assignment']").click()
